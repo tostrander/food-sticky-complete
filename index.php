@@ -31,20 +31,20 @@ $f3->route('GET /', function() {
 //Define an order route
 $f3->route('GET|POST /order', function($f3) {
 
-    //Get data from form
-    $food = $_POST['food'];
-    $qty = $_POST['qty'];
-    $meal = $_POST['meal'];
-    $cond = $_POST['cond'];
-
-    //Add data to hive
-    $f3->set('food', $food);
-    $f3->set('qty', $qty);
-    $f3->set('meal', $meal);
-    $f3->set('cond', $cond);
-
     //If form has been submitted, validate
     if(!empty($_POST)) {
+
+        //Get data from form
+        $food = $_POST['food'];
+        $qty = $_POST['qty'];
+        $meal = $_POST['meal'];
+        $cond = $_POST['cond'];
+
+        //Add data to hive
+        $f3->set('food', $food);
+        $f3->set('qty', $qty);
+        $f3->set('meal', $meal);
+        $f3->set('cond', $cond);
 
         //If data is valid
         if (validForm()) {
