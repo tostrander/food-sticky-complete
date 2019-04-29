@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Order</title>
+
+    <style>
+        .err {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+<h1>Food Order</h1>
+<form method="post" action="#">
+
+    <label>Food Item
+        <input type="text" name="food" value="{{ @food }}">
+    </label>
+    <check if="{{ @errors['food'] }}">
+        <span class="err">{{ @errors['food'] }}</span>
+    </check>
+    <br><br>
+
+    <label>Quantity
+        <input type="text" name="qty" value="{{ @qty }}">
+        <check if="{{ @errors['qty'] }}">
+            <span class="err">{{ @errors['qty'] }}</span>
+        </check>
+    </label>
+
+    <p>Select Meal
+        <check if="{{ @errors['meal'] }}">
+            <span class="err">{{ @errors['meal'] }}</span>
+        </check><br>
+    <repeat group="{{ @meals }}" value="{{ @mealOption }}">
+        <label><input type="radio" name="meal" value="{{ @mealOption }}"
+            <check if="{{ @mealOption == @meal }}">
+                checked="checked"
+            </check>
+        >{{ @mealOption }}</label><br>
+    </repeat>
+    </p>
+
+    <p>Select Condiments:
+        <check if="{{ @errors['cond'] }}">
+            <span class="err">{{ @errors['cond'] }}</span>
+        </check><br>
+
+        <repeat group="{{ @condiments }}" value="{{ @condOption }}">
+            <label><input type="checkbox" name="cond[]" value="{{ @condOption }}"
+                <check if="{{ !empty(@cond) && in_array(@condOption, @cond) }}">
+                    checked="checked"
+                </check>
+            >{{ @condOption }}</label><br>
+        </repeat>
+    </p>
+
+    <input type="submit" value="Place Order">
+</form>
+</body>
+</html>
